@@ -21,6 +21,20 @@ SuperMarketPOS combines a modern JavaFX desktop app with a Spring Boot REST API 
 - Branch and workforce management
 - Role-based access with JWT authentication
 
+## Screenshots
+
+### Login
+
+![Login Screen](docs/screenshots/login.png)
+
+### Dashboard
+
+![Dashboard Screen](docs/screenshots/dashboard.png)
+
+### POS
+
+![POS Screen](docs/screenshots/pos.png)
+
 ## Key Features
 
 - Desktop POS interface for cashier, admin, and owner workflows
