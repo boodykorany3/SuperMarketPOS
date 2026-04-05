@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<StackPane xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pos.LoginController"
+           stylesheets="@/styles/style.css"
+           styleClass="login-root">
+
+    <Pane pickOnBounds="false" mouseTransparent="true" styleClass="login-decor">
+        <children>
+            <Region styleClass="deco-orb deco-orb-one" layoutX="80" layoutY="20"/>
+            <Region styleClass="deco-orb deco-orb-two" layoutX="880" layoutY="470"/>
+        </children>
+    </Pane>
+
+    <HBox maxWidth="960" styleClass="login-shell">
+
+        <VBox fx:id="brandPane" spacing="14" styleClass="login-brand-pane">
+            <Label text="%login.brand.title" styleClass="brand-title"/>
+            <StackPane styleClass="brand-logo-badge">
+                <Region styleClass="brand-logo-ring"/>
+                <Region styleClass="brand-logo-core"/>
+            </StackPane>
+            <Label text="%login.brand.kicker" styleClass="brand-kicker"/>
+            <Separator/>
+            <Label text="%login.brand.text" styleClass="brand-text" wrapText="true"/>
+            <Label text="%login.brand.chip" styleClass="brand-chip"/>
+        </VBox>
+
+        <VBox fx:id="loginCard" spacing="18" styleClass="login-card">
+            <Label text="%login.title" styleClass="login-title"/>
+            <Label text="%login.subtitle" styleClass="login-subtitle" wrapText="true"/>
+
+            <VBox spacing="8" styleClass="login-input-wrap">
+                <Label text="%login.username.label" styleClass="login-label"/>
+                <TextField fx:id="usernameField"
+                           promptText="%login.username.prompt"
+                           styleClass="login-field"/>
+            </VBox>
+
+            <VBox spacing="8" styleClass="login-input-wrap">
+                <Label text="%login.password.label" styleClass="login-label"/>
+                <StackPane>
+                    <PasswordField fx:id="passwordField"
+                                   promptText="%login.password.prompt"
+                                   styleClass="login-field"/>
+                    <TextField fx:id="visiblePasswordField"
+                               promptText="%login.password.prompt"
+                               styleClass="login-field"/>
+                </StackPane>
+                <CheckBox fx:id="showPasswordToggle"
+                          text="%login.password.show"
+                          styleClass="login-check"/>
+            </VBox>
+
+            <Label fx:id="errorLabel"
+                   text=""
+                   styleClass="login-error"/>
+
+            <StackPane>
+                <Button text="%login.button.sign_in"
+                        fx:id="loginButton"
+                        styleClass="login-button"
+                        maxWidth="1.7976931348623157E308"/>
+                <ProgressIndicator fx:id="loginProgress"
+                                   prefWidth="20"
+                                   prefHeight="20"
+                                   visible="false"
+                                   managed="false"
+                                   styleClass="login-progress"/>
+            </StackPane>
+        </VBox>
+    </HBox>
+
+</StackPane>

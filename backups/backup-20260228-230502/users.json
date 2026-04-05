@@ -1,0 +1,17 @@
+[
+  {
+    "username": "owner",
+    "password": "PBKDF2$65536$9QF5iEpq0dKVx+WuDtiiIg\u003d\u003d$Mo2ftN5YBhOyAWniEwfXro4BEwnz0+LGWL/5ASgInWA\u003d",
+    "role": "OWNER"
+  },
+  {
+    "username": "admin",
+    "password": "PBKDF2$65536$YYWtpmcdymNPRFDLBld49w\u003d\u003d$BWDPNg+NJzPsKzNcsuTkM9YaP2M9VFWm99shRKli9Fs\u003d",
+    "role": "ADMIN"
+  },
+  {
+    "username": "cashier",
+    "password": "PBKDF2$65536$QKgqrIbMeTRrQ64nKnWmUg\u003d\u003d$YE4mWg0wfD88OAd4orkU6+NW8lsy698plgpTYe2K38g\u003d",
+    "role": "CASHIER"
+  }
+]

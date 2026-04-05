@@ -1,0 +1,39 @@
+[
+  {
+    "invoiceNumber": "Invoice #0003",
+    "dateTime": "2026-02-26T14:44:42.362789800",
+    "items": {
+      "حلبة": 17
+    },
+    "itemBarcodes": {
+      "6224000911317": 17
+    },
+    "itemNamesByBarcode": {
+      "6224000911317": "حلبة"
+    },
+    "total": 595.0,
+    "status": "CANCELED"
+  },
+  {
+    "invoiceNumber": "Invoice #0002",
+    "dateTime": "2026-02-25T22:43:13.866989400",
+    "items": {
+      "milk": 1
+    },
+    "itemBarcodes": {},
+    "itemNamesByBarcode": {},
+    "total": 50.0,
+    "status": "RETURNED"
+  },
+  {
+    "invoiceNumber": "Invoice #0001",
+    "dateTime": "2026-02-25T22:14:06.200872",
+    "items": {
+      "milk": 1
+    },
+    "itemBarcodes": {},
+    "itemNamesByBarcode": {},
+    "total": 25.0,
+    "status": "RETURNED"
+  }
+]

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.pos.POSController"
+      stylesheets="@/styles/style.css"
+      styleClass="root-app pos-root"
+      spacing="0">
+
+    <HBox styleClass="header-bar">
+        <HBox spacing="12" alignment="CENTER_LEFT" styleClass="header-store-block">
+            <StackPane styleClass="pos-header-logo-badge">
+                <Region styleClass="pos-header-logo-ring"/>
+                <Region styleClass="pos-header-logo-core"/>
+            </StackPane>
+            <VBox>
+                <Label text="ABU SAMIR MARKET" styleClass="store-title"/>
+                <Label fx:id="invoiceLabel"
+                       text="Invoice #0001"
+                       styleClass="invoice-id"/>
+            </VBox>
+        </HBox>
+
+        <Pane HBox.hgrow="ALWAYS"/>
+
+        <VBox alignment="CENTER_RIGHT" styleClass="header-user-block">
+            <Label fx:id="timeLabel"
+                   text="00:00"
+                   styleClass="time-label"/>
+            <Label text="Cashier: Admin"
+                   styleClass="cashier-label"/>
+        </VBox>
+    </HBox>
+
+    <StackPane VBox.vgrow="ALWAYS" styleClass="content-area">
+        <VBox styleClass="invoice-panel" spacing="14">
+            <TextField fx:id="barcodeField"
+                       promptText="Scan or enter barcode..."
+                       styleClass="barcode-field"/>
+
+            <HBox styleClass="invoice-header">
+                <Label text="PRODUCT" styleClass="col-name"/>
+                <Label text="QTY" styleClass="col-qty"/>
+                <Label text="TOTAL" styleClass="col-total"/>
+            </HBox>
+
+            <ScrollPane fitToWidth="true"
+                        VBox.vgrow="ALWAYS"
+                        styleClass="invoice-scroll">
+                <VBox fx:id="invoiceContainer"
+                      styleClass="invoice-container"/>
+            </ScrollPane>
+        </VBox>
+    </StackPane>
+
+    <HBox styleClass="control-strip">
+        <VBox spacing="8" styleClass="totals-block">
+            <Label text="TOTAL" styleClass="total-label"/>
+            <Label fx:id="totalLabel"
+                   text="0.00"
+                   styleClass="total-value"/>
+
+            <HBox spacing="10" styleClass="customer-row">
+                <Label text="Phone Number" styleClass="meta-label"/>
+                <TextField fx:id="phoneField"
+                           promptText="Enter customer phone"
+                           styleClass="phone-field"/>
+                <Label fx:id="customerPointsLabel"
+                       text="Points: 0"
+                       styleClass="points-chip"/>
+            </HBox>
+
+            <TextField fx:id="paidField"
+                       promptText="Amount paid"
+                       styleClass="payment-field"/>
+
+            <HBox spacing="10" styleClass="change-row">
+                <Label text="Change" styleClass="change-label"/>
+                <Label fx:id="changeLabel"
+                       text="0.00"
+                       styleClass="change-value"/>
+            </HBox>
+        </VBox>
+
+        <Pane HBox.hgrow="ALWAYS"/>
+
+        <HBox spacing="14" styleClass="control-actions">
+            <Button text="PAY" fx:id="btnPay" styleClass="btn-pay"/>
+            <Button text="DELETE" fx:id="btnDelete" styleClass="btn-delete"/>
+            <Button text="CANCEL" fx:id="btnCancel" styleClass="btn-cancel"/>
+        </HBox>
+    </HBox>
+
+</VBox>

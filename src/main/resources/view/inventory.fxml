@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.pos.InventoryController"
+      spacing="14"
+      styleClass="inventory-root">
+
+    <VBox spacing="3" styleClass="inventory-header">
+        <Label text="Inventory Management" styleClass="inventory-title"/>
+        <Label text="Manage products, pricing, and stock levels." styleClass="inventory-subtitle"/>
+    </VBox>
+
+    <VBox spacing="12" styleClass="inventory-form-card">
+        <Label text="Product Details" styleClass="inventory-section-title"/>
+
+        <HBox spacing="12">
+            <TextField fx:id="nameField"
+                       promptText="Product Name"
+                       styleClass="inventory-field"
+                       HBox.hgrow="ALWAYS"/>
+
+            <TextField fx:id="barcodeField"
+                       promptText="Barcode"
+                       styleClass="inventory-field"
+                       HBox.hgrow="ALWAYS"/>
+
+            <TextField fx:id="priceField"
+                       promptText="Price"
+                       prefWidth="130"
+                       styleClass="inventory-field"/>
+
+            <TextField fx:id="quantityField"
+                       promptText="Quantity"
+                       prefWidth="130"
+                       styleClass="inventory-field"/>
+        </HBox>
+
+        <HBox spacing="10" styleClass="inventory-actions-row">
+            <Button text="Add / Update" fx:id="addBtn" styleClass="inventory-primary-btn"/>
+            <Button text="Delete" fx:id="deleteBtn" styleClass="inventory-danger-btn"/>
+        </HBox>
+    </VBox>
+
+    <HBox spacing="12" styleClass="inventory-main-row" VBox.vgrow="ALWAYS">
+        <VBox spacing="10" styleClass="inventory-table-panel" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_LEFT" styleClass="inventory-table-panel-header">
+                <Label text="Stock List" styleClass="inventory-section-title"/>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <Label fx:id="productsCountLabel"
+                       text="Products: 0"
+                       styleClass="inventory-table-summary"/>
+            </HBox>
+
+            <TableView fx:id="tableView"
+                       styleClass="inventory-table"
+                       VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="nameCol" text="Product" prefWidth="260"/>
+                    <TableColumn fx:id="barcodeCol" text="Barcode" prefWidth="210"/>
+                    <TableColumn fx:id="priceCol" text="Price" prefWidth="130"/>
+                    <TableColumn fx:id="qtyCol" text="Quantity" prefWidth="120"/>
+                    <TableColumn fx:id="statusCol" text="Status" prefWidth="160"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+        <VBox spacing="10"
+              styleClass="inventory-insights-card"
+              prefWidth="360"
+              minWidth="320"
+              maxWidth="420">
+            <Label text="Top Selling Products" styleClass="inventory-section-title"/>
+            <Label fx:id="topSellingSummaryLabel" text="No sales data yet." styleClass="inventory-insights-summary"/>
+
+            <PieChart fx:id="topSellingPieChart"
+                      prefWidth="330"
+                      prefHeight="230"
+                      styleClass="inventory-sales-pie"/>
+
+            <Separator/>
+
+            <VBox fx:id="topSellingListBox"
+                  spacing="8"
+                  styleClass="inventory-insights-list"
+                  VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </HBox>
+
+</VBox>

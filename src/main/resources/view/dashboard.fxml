@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.pos.DashboardController"
+            stylesheets="@/styles/style.css"
+            styleClass="dash-root">
+
+    <top>
+        <HBox styleClass="dash-top">
+            <Label fx:id="roleLabel"
+                   text="%dashboard.role.default"
+                   styleClass="dash-title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button fx:id="logoutBtn"
+                    text="%dashboard.logout"
+                    styleClass="dash-logout"/>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox styleClass="dash-sidebar" spacing="10">
+            <Button fx:id="posBtn"
+                    text="%dashboard.nav.pos"
+                    styleClass="dash-btn"
+                    maxWidth="1.7976931348623157E308"/>
+
+            <Button fx:id="inventoryBtn"
+                    text="%dashboard.nav.inventory"
+                    styleClass="dash-btn"
+                    maxWidth="1.7976931348623157E308"/>
+
+            <Button fx:id="accountsBtn"
+                    text="%dashboard.nav.accounts"
+                    styleClass="dash-btn"
+                    maxWidth="1.7976931348623157E308"/>
+
+            <Button fx:id="reportsBtn"
+                    text="%dashboard.nav.reports"
+                    styleClass="dash-btn"
+                    maxWidth="1.7976931348623157E308"/>
+
+            <Button fx:id="settingsBtn"
+                    text="%dashboard.nav.settings"
+                    styleClass="dash-btn"
+                    maxWidth="1.7976931348623157E308"/>
+
+            <Button fx:id="upgradeBtn"
+                    text="%dashboard.nav.upgrade"
+                    styleClass="dash-btn dash-btn-owner"
+                    maxWidth="1.7976931348623157E308"/>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane fx:id="contentArea" styleClass="dash-content"/>
+    </center>
+
+</BorderPane>

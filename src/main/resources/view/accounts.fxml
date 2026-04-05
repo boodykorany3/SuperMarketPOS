@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.pos.AccountsController"
+      fx:id="accountsRoot"
+      spacing="14"
+      styleClass="accounts-root"
+      nodeOrientation="RIGHT_TO_LEFT">
+
+    <VBox spacing="3" styleClass="accounts-header">
+        <Label text="مركز الحسابات" styleClass="accounts-title"/>
+        <Label text="إدارة شجرة الحسابات والقيود اليومية وميزان المراجعة بالتفصيل."
+               styleClass="accounts-subtitle"/>
+    </VBox>
+
+    <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="accounts-tabs">
+        <tabs>
+            <Tab text="شجرة الحسابات">
+                <content>
+                    <VBox spacing="12" styleClass="accounts-tab-content">
+                        <VBox spacing="10" styleClass="accounts-card">
+                            <Label text="بيانات الحساب" styleClass="accounts-section-title"/>
+
+                            <HBox spacing="10">
+                                <TextField fx:id="accountCodeField" promptText="كود الحساب" styleClass="accounts-field" prefWidth="140"/>
+                                <TextField fx:id="accountNameField" promptText="اسم الحساب" styleClass="accounts-field" HBox.hgrow="ALWAYS"/>
+                                <ComboBox fx:id="accountTypeBox" promptText="النوع" prefWidth="150" styleClass="accounts-combo"/>
+                                <ComboBox fx:id="accountParentBox" promptText="الحساب الأب" prefWidth="280" styleClass="accounts-combo"/>
+                            </HBox>
+
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <CheckBox fx:id="accountPostingAllowedCheck" text="يسمح بالترحيل"/>
+                                <CheckBox fx:id="accountActiveCheck" text="نشط"/>
+                                <Pane HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="accountSummaryLabel" text="الإجمالي: 0" styleClass="accounts-summary-chip"/>
+                                <Button fx:id="accountSaveBtn" text="حفظ الحساب" styleClass="accounts-primary-btn"/>
+                                <Button fx:id="accountClearBtn" text="تفريغ" styleClass="accounts-neutral-btn"/>
+                                <Button fx:id="accountRefreshBtn" text="تحديث" styleClass="accounts-neutral-btn"/>
+                            </HBox>
+                        </VBox>
+
+                        <VBox spacing="8" styleClass="accounts-card" VBox.vgrow="ALWAYS">
+                            <Label text="قائمة الحسابات" styleClass="accounts-section-title"/>
+                            <TableView fx:id="accountsTable" styleClass="accounts-table" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="accountCodeCol" text="الكود" prefWidth="120"/>
+                                    <TableColumn fx:id="accountNameCol" text="الاسم / الشجرة" prefWidth="360"/>
+                                    <TableColumn fx:id="accountTypeCol" text="النوع" prefWidth="120"/>
+                                    <TableColumn fx:id="accountParentCol" text="الأب" prefWidth="120"/>
+                                    <TableColumn fx:id="accountLevelCol" text="المستوى" prefWidth="70"/>
+                                    <TableColumn fx:id="accountPostingCol" text="ترحيل" prefWidth="110"/>
+                                    <TableColumn fx:id="accountActiveCol" text="الحالة" prefWidth="110"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </VBox>
+                </content>
+            </Tab>
+
+            <Tab text="القيود اليومية">
+                <content>
+                    <VBox spacing="12" styleClass="accounts-tab-content">
+                        <VBox spacing="10" styleClass="accounts-card">
+                            <Label text="إنشاء قيد يومية" styleClass="accounts-section-title"/>
+
+                            <HBox spacing="10">
+                                <DatePicker fx:id="journalDatePicker" prefWidth="150"/>
+                                <TextField fx:id="journalDescriptionField"
+                                           promptText="وصف القيد"
+                                           styleClass="accounts-field"
+                                           HBox.hgrow="ALWAYS"/>
+                                <TextField fx:id="journalRefTypeField" promptText="نوع المرجع" styleClass="accounts-field" prefWidth="170"/>
+                                <TextField fx:id="journalRefIdField" promptText="رقم المرجع" styleClass="accounts-field" prefWidth="130"/>
+                                <ComboBox fx:id="journalEntryBranchBox" promptText="فرع القيد" prefWidth="210" styleClass="accounts-combo"/>
+                            </HBox>
+
+                            <HBox spacing="10">
+                                <ComboBox fx:id="journalLineAccountBox"
+                                          promptText="حساب الترحيل"
+                                          styleClass="accounts-combo"
+                                          prefWidth="380"/>
+                                <TextField fx:id="journalLineDebitField" promptText="مدين" styleClass="accounts-field" prefWidth="130"/>
+                                <TextField fx:id="journalLineCreditField" promptText="دائن" styleClass="accounts-field" prefWidth="130"/>
+                                <TextField fx:id="journalLineNoteField" promptText="ملاحظة" styleClass="accounts-field" HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="journalAddLineBtn" text="+ بند" styleClass="accounts-primary-btn"/>
+                                <Button fx:id="journalRemoveLineBtn" text="- بند" styleClass="accounts-danger-btn"/>
+                            </HBox>
+
+                            <TableView fx:id="journalLinesTable" prefHeight="170" styleClass="accounts-table">
+                                <columns>
+                                    <TableColumn fx:id="journalLineAccountCol" text="الحساب" prefWidth="360"/>
+                                    <TableColumn fx:id="journalLineDebitCol" text="مدين" prefWidth="140"/>
+                                    <TableColumn fx:id="journalLineCreditCol" text="دائن" prefWidth="140"/>
+                                    <TableColumn fx:id="journalLineNoteCol" text="ملاحظة" prefWidth="360"/>
+                                </columns>
+                            </TableView>
+
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label fx:id="journalTotalsLabel"
+                                       text="مدين: 0.00 ج.م | دائن: 0.00 ج.م | الفرق: 0.00 ج.م"
+                                       styleClass="accounts-summary-chip"/>
+                                <Pane HBox.hgrow="ALWAYS"/>
+                                <Button fx:id="journalSaveEntryBtn" text="حفظ القيد" styleClass="accounts-primary-btn"/>
+                            </HBox>
+                        </VBox>
+
+                        <VBox spacing="8" styleClass="accounts-card" VBox.vgrow="ALWAYS">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label text="سجل القيود اليومية" styleClass="accounts-section-title"/>
+                                <Pane HBox.hgrow="ALWAYS"/>
+                                <ComboBox fx:id="journalFilterBranchBox" prefWidth="210" promptText="الفرع" styleClass="accounts-combo"/>
+                                <DatePicker fx:id="journalFromDatePicker" prefWidth="150"/>
+                                <DatePicker fx:id="journalToDatePicker" prefWidth="150"/>
+                                <Button fx:id="journalLoadBtn" text="عرض" styleClass="accounts-neutral-btn"/>
+                            </HBox>
+
+                            <TableView fx:id="journalEntriesTable" styleClass="accounts-table" prefHeight="250">
+                                <columns>
+                                    <TableColumn fx:id="journalEntryDateCol" text="التاريخ" prefWidth="115"/>
+                                    <TableColumn fx:id="journalEntryDescCol" text="الوصف" prefWidth="370"/>
+                                    <TableColumn fx:id="journalEntryBranchCol" text="الفرع" prefWidth="170"/>
+                                    <TableColumn fx:id="journalEntryDebitCol" text="مدين" prefWidth="135"/>
+                                    <TableColumn fx:id="journalEntryCreditCol" text="دائن" prefWidth="135"/>
+                                    <TableColumn fx:id="journalEntryByCol" text="تم بواسطة" prefWidth="130"/>
+                                </columns>
+                            </TableView>
+
+                            <TextArea fx:id="journalEntryDetailsArea"
+                                      wrapText="true"
+                                      editable="false"
+                                      prefHeight="130"
+                                      promptText="تفاصيل القيد ستظهر هنا..."
+                                      styleClass="accounts-textarea"/>
+                        </VBox>
+                    </VBox>
+                </content>
+            </Tab>
+
+            <Tab text="ميزان المراجعة">
+                <content>
+                    <VBox spacing="12" styleClass="accounts-tab-content">
+                        <VBox spacing="10" styleClass="accounts-card">
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label text="فلاتر ميزان المراجعة" styleClass="accounts-section-title"/>
+                                <Pane HBox.hgrow="ALWAYS"/>
+                                <ComboBox fx:id="trialBranchBox" prefWidth="220" promptText="الفرع" styleClass="accounts-combo"/>
+                                <DatePicker fx:id="trialFromDatePicker" prefWidth="150"/>
+                                <DatePicker fx:id="trialToDatePicker" prefWidth="150"/>
+                                <CheckBox fx:id="trialIncludeZeroCheck" text="إظهار الحسابات الصفرية"/>
+                                <Button fx:id="trialLoadBtn" text="تحميل الميزان" styleClass="accounts-primary-btn"/>
+                            </HBox>
+
+                            <Label fx:id="trialSummaryLabel" text="لا توجد بيانات لميزان المراجعة." styleClass="accounts-summary-chip"/>
+                        </VBox>
+
+                        <VBox spacing="8" styleClass="accounts-card" VBox.vgrow="ALWAYS">
+                            <TableView fx:id="trialTable" styleClass="accounts-table" VBox.vgrow="ALWAYS">
+                                <columns>
+                                    <TableColumn fx:id="trialCodeCol" text="الكود" prefWidth="130"/>
+                                    <TableColumn fx:id="trialNameCol" text="اسم الحساب" prefWidth="320"/>
+                                    <TableColumn fx:id="trialTypeCol" text="النوع" prefWidth="120"/>
+                                    <TableColumn fx:id="trialDebitCol" text="مدين" prefWidth="140"/>
+                                    <TableColumn fx:id="trialCreditCol" text="دائن" prefWidth="140"/>
+                                    <TableColumn fx:id="trialBalanceCol" text="الرصيد" prefWidth="140"/>
+                                    <TableColumn fx:id="trialNatureCol" text="طبيعة الرصيد" prefWidth="120"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </VBox>
+                </content>
+            </Tab>
+        </tabs>
+    </TabPane>
+
+</VBox>
